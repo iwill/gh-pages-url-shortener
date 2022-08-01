@@ -2,75 +2,69 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
     <title>Redirecting...</title>
     <script>
       /**
        * Configuration goes here
        */
       // Format: https://api.github.com/repos/{owner}/{repo}/issues/
-      var GITHUB_ISSUES_LINK =
-        "https://api.github.com/repos/nelsontky/gh-pages-url-shortener-db/issues/";
-      var PATH_SEGMENTS_TO_SKIP = 0;
+      let GITHUB_ISSUES_LINK = "https://api.github.com/repos/iwill/url-db/issues/";
+      let PATH_SEGMENTS_TO_SKIP = 1; // 0 for `url.iwill.im`, or 1 for `iwill.im/url`
 
       /**
        * DO NOT TOUCH ANYTHING BELOW THIS COMMENT UNLESS YOU KNOW WHAT YOU ARE DOING
        */
-      function isUrl(url) {
-        // Regex from https://stackoverflow.com/a/3809435, with a modification to allow for TLDs of up to 24 characters
-        return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,24}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)+$/.test(
-          url
-        );
+      function isUrl(string) {
+        try {
+          let url = new URL(string);
+          // Supports any url, or just http url via `return /https?:/.test(url.protocol);`
+          // https://stackoverflow.com/a/43467144/456536
+          return true;
+        }
+        catch (e) {
+          return false;
+        };
       }
-
+      
+      const decode = (x) => { try { return decodeURIComponent(escape(atob(x.replace(/%(?:2B|2F|3D)/g, decodeURIComponent)))) } catch(e) { return null } };
+      
       function redirect() {
-        var location = window.location;
-        var issueNumber = location.pathname.split("/")[
+        let location = window.location;
+        let issueNumber = location.pathname.split("/")[
           PATH_SEGMENTS_TO_SKIP + 1
         ];
-        var homepage =
-          location.protocol +
-          "//" +
-          location.hostname +
-          (location.port ? ":" + location.port : "") +
-          "/" +
-          location.pathname.split("/")[PATH_SEGMENTS_TO_SKIP];
-
-        var xhr = new XMLHttpRequest();
-
+        let errorPage = new URL("error.html", location.href).href;
+        
+        let xhr = new XMLHttpRequest();
+        
         xhr.onload = function () {
           try {
-            var payload = JSON.parse(xhr.response);
-            var message = payload.message;
-            var title = payload.title;
-
-            // Workaround IE 11 lack of support for new URL()
-            var url = document.createElement("a");
-            url.setAttribute("href", title);
-
-            // Invalid URLs includes invalid issue numbers, issue titles that are not URLs, and recursive destination URLs
-            var isInvalidUrl =
-              message === "Not Found" ||
-              !title ||
-              !isUrl(title) ||
-              url.hostname === location.hostname;
-
-            if (isInvalidUrl) {
-              location.replace(homepage);
-            } else {
-              location.replace(title);
+            let payload = JSON.parse(xhr.response);
+            // let message = payload.message;
+            let base64Body = decode(payload.body), base64Title = decode(payload.title);
+            let string = (isUrl(base64Body) ? base64Body
+              : isUrl(payload.body) ? payload.body
+              : isUrl(base64Title) ? base64Title
+              : isUrl(payload.title) ? payload.title
+              : null);
+            let isValidUrl = (xhr.status >= 200 && xhr.status < 400 && string);
+            if (isValidUrl) {
+              location.replace(string);
+              return;
             }
-          } catch (e) {
-            location.replace(homepage);
           }
+          catch (e) {}
+          location.replace(errorPage);
         };
-
+        
         xhr.onerror = function () {
-          location.replace(homepage);
+          location.replace(errorPage);
         };
         xhr.open("GET", GITHUB_ISSUES_LINK + issueNumber);
         xhr.send();
       }
-
+      
       redirect();
     </script>
   </head>

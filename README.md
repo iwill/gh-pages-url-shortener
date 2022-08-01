@@ -1,6 +1,6 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![Total Lines](https://img.shields.io/tokei/lines/github/nelsontky/gh-pages-url-shortener?color=green)
-![GitHub stars](https://img.shields.io/github/stars/nelsontky/gh-pages-url-shortener?style=social)
+![Total Lines](https://img.shields.io/tokei/lines/github/iwill/url?color=green)
+![GitHub stars](https://img.shields.io/github/stars/iwill/url?style=social)
 
 # 🔗 GitHub Pages URL Shortener
 
@@ -8,23 +8,29 @@ This is a minimal URL shortener that can be entirely hosted on GitHub pages. It
 does not need the maintenance of any servers or databases and can be hosted
 entirely on GitHub for free!
 
+<details>
+    <summary>See Hacker News & GitHub Trending</summary>
+
 [Yay! We got to the top of HN!](https://news.ycombinator.com/item?id=25110879)
 
 <img src="https://i.imgur.com/ZfD7XGt.png" alt="Top of HN" width="240px">
 
-And on GitHub trending!
+And on GitHub Trending!
 
 <img src="https://i.imgur.com/OkYCSOx.png" alt="GitHub Trending" width="240px">
 
-## 👨‍🏫 Demo
+</details>
 
-1. [nlsn.cf/1](https://nlsn.cf/1) should link to this repo.
+## 👨🏿‍🏫 Demo
 
-1. To add a new short link, add an issue with the title being the link you want
-   to shorten (including the `http(s)://`) to
-   [https://github.com/nelsontky/gh-pages-url-shortener-db/issues](https://github.com/nelsontky/gh-pages-url-shortener-db/issues).
+1. [iwill.im/url/1](https://iwill.im/url/1) should link to this repo, and
+   [iwill.im/url/2](https://iwill.im/url/2) should link to an awesome Calculator.
 
-1. The newly created short url can be accessed via `nlsn.cf/{issue_number}`
+1. To add a new short link, [add an issue](https://github.com/iwill/url-db/issues/new?template=url-shortener-template.md&title=`short-url`+-+accepts+256+characters&body=`loooong-url`%20-%20accepts%2065536%20characters)
+   with the body or title being the full URL you want to shorten to
+   [iwill/url-db](https://github.com/iwill/url-db).
+
+1. The newly created short URL can be accessed via `iwill.im/url/{issue_number}`
 
 ## ☕️ Features
 
@@ -33,7 +39,7 @@ And on GitHub trending!
    pages.
 
 1. There is no need for the pound symbol - short URLs look clean like this:
-   `nlsn.cf/1` instead of looking like this: `nlsn.cf/#1`.
+   `iwill.im/url/1` instead of looking like this: `iwill.im/url/#1`.
 
 ## 💡 How does this work?
 
@@ -42,7 +48,7 @@ _Thanks to @kidGodzilla for the pretty neat explanation
 
 > 1. 404.html handles all requests
 > 1. Small javascript snippet fetches a JSON representation of the GitHub issue
->    via the JSON API, and redirects to the issue title, as a URL.
+>    via the JSON API, and redirects to the issue body or title, as a URL.
 > 1. Profit?
 
 ## 😎 This is so cool! How can I use this with my own domain?!
@@ -79,9 +85,8 @@ be reliable. Do proceed at your own risk!_
 
 To feature your fork here, edit this section and open a PR!
 
-- [eexit.github.io/s](https://github.com/eexit/s) - Created a bash script that
-  allows for shortening of URLs straight on the command line! Check out his
-  script
-  [here](https://github.com/nelsontky/gh-pages-url-shortener/issues/49#issue-745134937).
-- [gh-short-url](https://github.com/mayandev/gh-short-url) - A npm command line
-  tool that uses GitHub pages to convert short URLs.
+- [nlsn.cf](https://nlsn.cf/1) - The repo which I forked from.
+- [iwill.im/url/](https://github.com/iwill/url) - This repo, which supports
+  loooong URL by using issue body (or use title if body is not a valid URL,
+  body/title accepts up to 65536/256 characters), e.g. [iwill.im/url/2](https://iwill.im/url/2)
+  shortened a super long URL.
