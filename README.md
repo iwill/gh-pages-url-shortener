@@ -86,7 +86,7 @@ be reliable. Do proceed at your own risk!_
 To feature your fork here, edit this section and open a PR!
 
 - [nlsn.cf](https://nlsn.cf/1) - The repo which I forked from.
-- [u.iwill.im/](https://github.com/iwill/url) - This repo, which supports
+- [u.iwill.im](https://github.com/iwill/url) - This repo, which supports
   loooong URL by using issue body (or use title if body is not a valid URL,
   body/title accepts up to 65536/256 characters), e.g. [u.iwill.im/2](https://u.iwill.im/2)
   shortened a super long URL.
