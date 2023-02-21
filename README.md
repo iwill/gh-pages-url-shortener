@@ -23,14 +23,14 @@ And on GitHub Trending!
 
 ## 👨🏿‍🏫 Demo
 
-1. [iwill.im/url/1](https://iwill.im/url/1) should link to this repo, and
-   [iwill.im/url/2](https://iwill.im/url/2) should link to an awesome Calculator.
+1. [u.iwill.im/1](https://u.iwill.im/1) should link to this repo, and
+   [u.iwill.im/2](https://u.iwill.im/2) should link to an awesome Calculator.
 
 1. To add a new short link, [add an issue](https://github.com/iwill/url-db/issues/new?template=url-shortener-template.md&title=`short-url`+-+accepts+256+characters&body=`loooong-url`%20-%20accepts%2065536%20characters)
    with the body or title being the full URL you want to shorten to
    [iwill/url-db](https://github.com/iwill/url-db).
 
-1. The newly created short URL can be accessed via `iwill.im/url/{issue_number}`
+1. The newly created short URL can be accessed via `u.iwill.im/{issue_number}`
 
 ## ☕️ Features
 
@@ -39,7 +39,7 @@ And on GitHub Trending!
    pages.
 
 1. There is no need for the pound symbol - short URLs look clean like this:
-   `iwill.im/url/1` instead of looking like this: `iwill.im/url/#1`.
+   `u.iwill.im/1` instead of looking like this: `u.iwill.im/#1`.
 
 ## 💡 How does this work?
 
@@ -86,7 +86,7 @@ be reliable. Do proceed at your own risk!_
 To feature your fork here, edit this section and open a PR!
 
 - [nlsn.cf](https://nlsn.cf/1) - The repo which I forked from.
-- [iwill.im/url/](https://github.com/iwill/url) - This repo, which supports
+- [u.iwill.im/](https://github.com/iwill/url) - This repo, which supports
   loooong URL by using issue body (or use title if body is not a valid URL,
-  body/title accepts up to 65536/256 characters), e.g. [iwill.im/url/2](https://iwill.im/url/2)
+  body/title accepts up to 65536/256 characters), e.g. [u.iwill.im/2](https://u.iwill.im/2)
   shortened a super long URL.
